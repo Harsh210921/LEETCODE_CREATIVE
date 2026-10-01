@@ -1,0 +1,21 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+     new=list(s)
+     d={"(":")","[":"]","{":"}"}
+     keys=["(","[","{"]
+     values=[")","]","}"]
+     checker=[]
+     if new.count("(")!=new.count(")") or new.count("{")!=new.count("}")or new.count("[")!=new.count("]"):
+      return False
+     else:
+      for paranthesis in s:
+        if paranthesis in keys:
+          checker.append(paranthesis)
+        elif paranthesis in values:
+          if len(checker)==0:
+            return False
+          elif paranthesis!=d[checker[-1]]:
+           return False
+          else:
+            checker.pop(-1)
+      return True
