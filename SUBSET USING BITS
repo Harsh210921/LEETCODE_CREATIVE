@@ -1,0 +1,23 @@
+class Solution:
+    def subsetXORSum(self, nums: list[int]) -> int:
+      empty=[]
+      n=len(nums)
+      total_elements=2**n
+      binary = [bin(i)[2:].zfill(n) for i in range(1, 2**n)]
+      for numbers in binary:
+        temp=[]
+        for i in range(n):
+          if numbers[i] == "1":
+            temp.append(nums[i])
+        empty.append(temp)
+
+      xor_sum=0
+      for sub_list in empty:
+        xor=0
+        if len(sub_list)==1:
+          xor^=sub_list[0]
+        else:
+          for numbers in sub_list:
+            xor^=numbers
+        xor_sum+=xor
+      return xor_sum
