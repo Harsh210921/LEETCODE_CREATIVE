@@ -21,3 +21,21 @@ class Solution:
             xor^=numbers
         xor_sum+=xor
       return xor_sum
+
+
+#EASY TO UNDERSTAND METHOD
+class Solution:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
+      length=len(nums)
+      numberSubset=2**length
+      binList=[]
+      for i in range(numberSubset):
+        binList.append(str(bin(i))[2:].zfill(length))
+      output=[]
+      for numbers in binList:
+        temp=[]
+        for i in range(length):
+          if numbers[i]=="1":
+            temp.append(nums[i])
+        output.append(temp)
+      return output
